@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!--
+Design adapted from Pluralism by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Search Results - Ed &amp; Eg Financial Advisors</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="{stylesheet=includes/site_css}" rel="stylesheet" type="text/css" media="screen" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="wrapper2">
+        <div id="header">
+          {website_sitename}
+          {website_menu}
+        </div>
+        <!-- end #header -->
+        <div id="page">
+          <div id="content">
+            <h1>Search Results</h1>
+            <p>You searched for <em>{exp:search:keywords}</em>.</p>
+            <br />
+            <table width="100%">
+              <tr>
+                <th>Title</th>
+                <th>Excerpt</th>
+              </tr>
+              {exp:search:search_results}
+                <tr style="background-color: {switch="#d3e3d3|#ffffff"};">
+                  <td style="width: 40%; text-align: center;">
+                    <strong><a href="{auto_path}">{channel}: {title}</a></strong>
+                    <br />
+                    {if comment_total=="1"}
+                      1 Comment
+                    {if:else}
+                      {comment_total} Comments
+                    {/if}
+                  </td>
+                  <td style="width: 60%; padding:6px;">{excerpt}</td>
+                </tr>
+              {/exp:search:search_results}
+            </table>
+            {if paginate}
+              <div class='paginate'>
+                <span>{page_count}</span>&nbsp; {paginate}
+              </div>
+            {/if}
+          </div>
+          <!-- end #content -->
+          {website_sidebar}
+          <div style="clear: both;">&nbsp;</div>
+          {website_faqs}
+        </div>
+        <!-- end #page -->
+      </div>
+      <!-- end #wrapper2 -->
+      <div id="footer">
+        <p>(c) 2007 Eg &amp; Ed. Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree</a> + <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+      </div>
+    </div>
+    <!-- end #wrapper -->
+  </body>
+</html>

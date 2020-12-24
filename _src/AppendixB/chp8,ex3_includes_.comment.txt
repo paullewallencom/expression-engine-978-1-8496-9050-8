@@ -1,0 +1,39 @@
+<h3>Comments</h3>
+{exp:comment:entries}
+  {if comments}
+    <p>{comment}</p>
+    <p class="meta">Posted by {name} on {comment_date format='%m/%d'} at {comment_date format='%h:%i %A'}</p><br />
+  {/if}
+  {if no_results}
+    <p>There are no comments at this time - be the first to share your thoughts!</p>
+  {/if}
+{/exp:comment:entries}            
+{exp:comment:preview}
+  <p>{comment}</p>
+  <p class="meta">Being previewed by {name} on {comment_date format='%m/%d'} at {comment_date format='%h:%i %A'}</p><br />
+{/exp:comment:preview}
+{exp:comment:form preview="{embed:my_template_group}/{embed:my_single_entry_template}"}
+  <h3>Post Your Own Comment</h3><br />
+  {if logged_out}
+    <p><label for="name">Name:</label>&nbsp;<input type="text" name="name" id="name" value="{name}" size="50" /></p>
+    <p><label for="email">Email:</label>&nbsp;<input type="text" name="email" id="email" value="{email}" size="50" /></p>
+  {/if}
+  <p>
+    <label for="comment">Comment:</label><br />
+    <textarea name="comment" id="comment" cols="80" rows="12">{comment}</textarea>
+  </p>
+  <p>
+     {if logged_out}
+       <input type="checkbox" name="save_info" id="save_info" value="yes" {save_info} /><label for="save_info">Remember my personal information</label><br />
+    {/if}
+    <input type="checkbox" name="notify_me" id="notify_me" value="yes" {notify_me} /><label for="notify_me">Notify me of follow-up comments?</label>
+  </p>
+  {if captcha}
+    {captcha}
+    <p><label for="captcha">Submit the text you see in the image above:</label>&nbsp;<input type="text" name="captcha" id="captcha" value="" size="20" maxlength="20" style="width:140px;" /></p>
+  {/if}
+  <p>
+    <input type="submit" name="submit" value="Submit" />
+    <input type="submit" name="preview" value="Preview" />
+  </p>
+{/exp:comment:form}

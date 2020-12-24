@@ -1,0 +1,49 @@
+{preload_replace:my_channel="website"}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!--
+Design adapted from Pluralism by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>{exp:channel:entries channel="{my_channel}" limit="1" url_title="{embed:url_title}" disable="categories|category_fields|custom_fields|member_data|pagination"}{title}{/exp:channel:entries} - Ed &amp; Eg Financial Advisors</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="{stylesheet=includes/site_css}" rel="stylesheet" type="text/css" media="screen" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="wrapper2">
+        <div id="header">
+          {website_sitename}
+          {website_menu}
+        </div>
+        <!-- end #header -->
+        <div id="page">
+          <div id="content">
+            {exp:channel:entries channel="{my_channel}" limit="1" url_title="{embed:url_title}"}
+              <h1>{title}</h1>
+              {if website_image}<img src="{website_image}" class="left" />{/if}
+              {website_content}
+            {/exp:channel:entries}
+          </div>
+          <!-- end #content -->
+          {website_sidebar}
+          <div style="clear: both;">&nbsp;</div>
+          {website_faqs}
+        </div>
+        <!-- end #page -->
+      </div>
+      <!-- end #wrapper2 -->
+      <div id="footer">
+        <p>(c) 2007 Eg &amp; Ed. Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree</a> + <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+      </div>
+    </div>
+    <!-- end #wrapper -->
+  </body>
+</html>

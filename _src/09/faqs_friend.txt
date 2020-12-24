@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!--
+Design adapted from Pluralism by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Tell a Friend - Ed &amp; Eg Financial Advisors</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="{stylesheet=includes/site_css}" rel="stylesheet" type="text/css" media="screen" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="wrapper2">
+        <div id="header">
+          {website_sitename}
+          {website_menu}
+        </div>
+        <!-- end #header -->
+        <div id="page">
+          <div id="content">
+            <h1>Tell a Friend</h1>
+            {if logged_out}
+              <p>Sorry, you must be logged in to tell-a-friend.</p>
+            {if:else}
+              {exp:email:tell_a_friend charset="utf-8" allow_html='no' status="open|premium"}
+                <br />
+                <label for="from">Your Email: </label><br />
+                <input type="text" id="from" name="from" size="40" maxlength="50" value="{member_email}" readonly="readonly" /><br />
+                <br />
+                <label for="name">Your Name: </label><br />
+                <input type="text" id="name" name="name" size="40" maxlength="50" value="{member_name}" /><br />
+                <br />
+                <label for="to">To: </label><br />
+                <input type="text" id="to" name="to" size="40" maxlength="50" /><br />
+                <br />
+                <label for="subject">Subject: </label><br />
+                <input type="text" id="subject" name="subject" size="40" value="Check this out!" /><br />
+                <br />
+                <label for="message">Message: </label><br />
+                <textarea id="message" name="message" readonly="readonly" rows="10" cols="80">
+I saw the following question at {site_url} and thought you'd like it too:
+
+{faqs_question}
+
+Read the answer at {title_permalink='faqs/browse'}!
+                </textarea><br />
+                <br />
+                {if captcha}
+                  {captcha}
+                  <br />
+                  <label for="captcha">Please enter the word you see:</label>
+                  <input id="captcha" type="text" name="captcha" value="" maxlength="20" /><br />
+                  <br />
+                {/if}
+                <input class="button" name="submit" type='submit' value='Submit Form' />
+              {/exp:email:tell_a_friend}
+            {/if}
+          </div>
+          <!-- end #content -->
+          {website_sidebar}
+          <div style="clear: both;">&nbsp;</div>
+          {website_faqs}
+        </div>
+        <!-- end #page -->
+      </div>
+      <!-- end #wrapper2 -->
+      <div id="footer">
+        <p>(c) 2007 Eg &amp; Ed. Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree</a> + <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+      </div>
+    </div>
+    <!-- end #wrapper -->
+  </body>
+</html>

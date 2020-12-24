@@ -1,0 +1,106 @@
+{preload_replace:my_channel="faqs"}
+{preload_replace:my_template_group="faqs"}
+{preload_replace:my_single_entry_template="browse"}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!--
+Design adapted from Pluralism by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>{exp:channel:entries channel="{my_channel}" disable="categories|category_fields|custom_fields|member_data|pagination" status="Open|Featured"}{title}{/exp:channel:entries} - Ed & Eg Financial Advisors</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="{stylesheet=includes/site_css}" rel="stylesheet" type="text/css" media="screen" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="wrapper2">
+        <div id="header">
+          {website_sitename}
+          {website_menu}
+        </div>
+        <!-- end #header -->
+        <div id="page">
+          <div id="content">
+            {exp:channel:entries channel="{my_channel}" limit="1" require_entry="yes"}
+              {if no_results}
+                {redirect="404"}
+              {/if}
+              {if segment_4 != ''}
+                {redirect="404"}
+              {/if} 
+              <h1>{title}</h1>
+              <p><strong>Q: </strong><em>{faqs_question}</em></p>
+              <p><strong>A: </strong>{faqs_answer}</p>
+              <p><a href={path={my_template_group}} title="Back to FAQs page">Back to FAQs</a></p>
+            {/exp:channel:entries}
+            <h3>Comments</h3>
+            {exp:comment:entries}
+              {if comments}
+                <p>{comment}</p>
+                <p class="meta">Posted by {name} on {comment_date format='%m/%d'} at {comment_date format='%h:%i %A'}</p><br />
+              {/if}
+              {if no_results}
+                <p>There are no comments at this time - be the first to share your thoughts!</p>
+              {/if}
+            {/exp:comment:entries}            
+            {exp:comment:preview}
+              <p>{comment}</p>
+              <p class="meta">Being previewed by {name} on {comment_date format='%m/%d'} at {comment_date format='%h:%i %A'}</p><br />
+            {/exp:comment:preview}
+            {exp:comment:form preview="{my_template_group}/{my_single_entry_template}"}
+              <h3>Post Your Own Comment</h3><br />
+              {if logged_out}
+                <p><label for="name">Name:</label> <input type="text" name="name" id="name" value="{name}" size="50" /></p>
+                <p><label for="email">Email:</label> <input type="text" name="email" id="email" value="{email}" size="50" /></p>
+              {/if}
+              <p>
+                <label for="comment">Comment:</label><br />
+                <textarea name="comment" id="comment" cols="80" rows="12">{comment}</textarea>
+              </p>
+              <p>
+                {if logged_out}
+                  <input type="checkbox" name="save_info" id="save_info" value="yes" {save_info} /><label for="save_info">Remember my personal information</label><br />
+                {/if}
+                <input type="checkbox" name="notify_me" id="notify_me" value="yes" {notify_me} /><label for="notify_me">Notify me of follow-up comments?</label>
+              </p>
+              {if captcha}
+                {captcha}
+                <p><label for="captcha">Submit the text you see in the image above:</label> <input type="text" name="captcha" id="captcha" value="" size="20" maxlength="20" style="width:140px;" /></p>
+              {/if}
+              <p>
+                <input type="submit" name="submit" value="Submit" />
+                <input type="submit" name="preview" value="Preview" />
+              </p>
+            {/exp:comment:form}
+            <h2>Other Questions Like This</h2>
+            <br />
+            {exp:channel:entries channel="{my_channel}" limit="5" related_categories_mode="yes" custom_fields="yes" orderby="random" status="Open|Featured"}
+              {if no_results}
+                <p>There are no questions like this currently – check back soon though...we’re always adding more!</p>
+              {/if}       
+              <p><strong>Q: </strong><em>{faqs_question}</em><br />
+              <strong>A: </strong><a href="{title_permalink="{my_template_group}/{my_single_entry_template}"}">Read the answer here!</a></p>       
+            {/exp:channel:entries}
+          </div>
+          <!-- end #content -->
+          {website_sidebar}
+          <div style="clear: both;"> </div>
+          {website_faqs}
+        </div>
+        <!-- end #page -->
+      </div>
+      <!-- end #wrapper2 -->
+      <div id="footer">
+        <p>(c) 2007 Eg & Ed. Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree</a> + <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+      </div>
+    </div>
+    <!-- end #wrapper -->
+  </body>
+</html>

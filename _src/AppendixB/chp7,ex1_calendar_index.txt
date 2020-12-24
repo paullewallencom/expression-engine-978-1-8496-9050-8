@@ -1,0 +1,100 @@
+{preload_replace:my_channel="events"}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!--
+Design adapted from Pluralism by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Calendar - Ed &amp; Eg Financial Advisors</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="{stylesheet=calendar/calendar_css}" rel="stylesheet" type="text/css" media="screen" />
+    {exp:jquery:script_tag}
+    <script type="text/javascript" src="{site_url}fancybox/jquery.fancybox-1.3.1.js"></script>
+    <script type="text/javascript" src="{site_url}fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+    <script type="text/javascript" src="{site_url}fancybox/jquery.easing-1.3.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="{site_url}fancybox/jquery.fancybox-1.3.1.css" media="screen" />
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $(".popup").fancybox({
+          'width': '75%',
+          'height': '75%',
+          'titlePosition': 'outside',	
+          'autoScale': true,
+          'margin': 0,
+          'padding': 0,
+          'overlayShow': true,
+          'hideOnContentClick': true,
+          'overlayOpacity': 0.7,
+          'transitionIn': 'none',
+          'transitionOut': 'none',
+          'type': 'iframe'
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="wrapper2">
+        <div id="header">
+          {website_sitename}
+          {website_menu}
+        </div>
+        <!-- end #header -->
+        <div id="page">
+          <div id="content">
+            <h1>Seminar Calendar</h1>
+            {exp:channel:calendar switch="calendarToday|calendarCell" channel="{my_channel}" show_future_entries="yes"}
+              <table class="calendarBG" border="0" cellpadding="6" cellspacing="1" summary="My Calendar" width="100%">
+                <tr class="calendarHeader">
+                  <th><a href="{previous_path=calendar/index}">&lt;&lt;</a></th> 
+                  <th colspan="5">{date format="%F %Y"}</th>
+                  <th><a href="{next_path=calendar/index}">&gt;&gt;</a></th>
+                </tr>
+                <tr>
+                  {calendar_heading}
+                    <td class="calendarDayHeading">{lang:weekday_short}</td>
+                  {/calendar_heading}
+                </tr>
+                {calendar_rows}
+                  {row_start}<tr>{/row_start}
+                  {if entries}
+                    <td class='{switch}'>
+                      {day_number}
+                      {entries}
+                        <div class="calendarEvent"><a class="popup" href="{title_permalink=calendar/event}">{title}</a></div>
+                      {/entries}
+                    </td>
+                  {/if}
+                  {if not_entries}
+                    <td class='{switch}'>{day_number}</td>
+                  {/if}
+                  {if blank}
+                    <td class='calendarBlank'>{day_number}</td>
+                  {/if}
+                  {row_end}</tr>{/row_end}
+                {/calendar_rows}
+              </table>
+            {/exp:channel:calendar}
+          </div>
+          <!-- end #content -->
+          {website_sidebar}
+          <div style="clear: both;">&nbsp;</div>
+          {website_faqs}
+        </div>
+        <!-- end #page -->
+      </div>
+      <!-- end #wrapper2 -->
+      <div id="footer">
+        <p>(c) 2007 Eg &amp; Ed. Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree</a> + <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+      </div>
+    </div>
+    <!-- end #wrapper -->
+  </body>
+</html>

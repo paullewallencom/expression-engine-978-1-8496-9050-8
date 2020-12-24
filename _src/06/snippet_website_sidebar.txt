@@ -1,0 +1,49 @@
+<div id="sidebar">
+  <ul>
+    <li>
+      <h3>Promotion!</h3>
+      <p>From now until the end of the year, Ed &amp; Eg are offering a <strong>free</strong> initial 90 minute consultation, plus <strong>25% off</strong> your first return visit. <a href="{site_url}promotion">Learn More&hellip;</a></p>
+    </li>
+    <li>
+      <h3>Key Services</h3>
+      <ul>
+        <li>-Budgeting</li>
+        <li>-Debt Management</li>
+        <li>-Investing</li>
+        <li>-Financial Planning</li>
+        <li>-Tax Services</li>
+        <li>-Book-keeping &amp; Cash Flow</li>
+        <li>-Accounts Preparation</li>
+        <li>-Payroll Services</li>
+      </ul>
+    </li>
+    <li>
+      <h3>Member Links</h3>
+      <ul>
+        {if logged_out}
+          <li>
+            <a href="{path=member/login}" title="Log into our website">Login</a>
+          </li>
+          <li>
+            <a href="{path=member/forgot_password}" title="Forgot Password?">Forgot Password?</a>
+          </li>
+          <li>
+            <a href="{path=member/register}" title="Register as a new member">Register</a>
+          </li>
+        {/if}
+        {if logged_in}
+          <li>
+            <a href="{path=member/profile}" title="Member profile">Profile</a>
+          </li>
+          <li>
+            <a href="{path=member/memberlist}" title="Member list">Member list</a>
+          </li>
+          <li>
+            <a href="{path=logout}" title="Log out of our website">Logout</a>
+          </li>
+        {/if}
+      </ul>
+    </li>
+  </ul>
+</div>
+<!-- end #sidebar -->

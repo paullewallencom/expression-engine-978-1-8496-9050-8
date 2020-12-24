@@ -1,0 +1,35 @@
+{preload_replace:my_channel="events"}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!--
+Design adapted from Pluralism by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Calendar Event - Ed &amp; Eg Financial Advisors</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="{stylesheet=calendar/event_css}" rel="stylesheet" type="text/css" media="screen" />
+  </head>
+  <body>
+    {exp:channel:entries channel="{my_channel}" show_future_entries="yes" limit="1" require_entry="yes"}
+      {if no_results}
+        {redirect="404"}
+      {/if}
+      <h1>{title}</h1>
+      <p><strong>Join us on {entry_date format="%F %j%S %Y"} at {entry_date format="%g:%i%a"}</strong></p>
+      <p>{events_description}</p>
+      {if events_sponsor}
+        {related_entries id="events_sponsor"}
+          <h2>More About {title}</h2>
+          <p>{event_sponsors_about}</p>
+        {/related_entries}
+      {/if}
+    {/exp:channel:entries}
+  </body>
+</html>

@@ -1,0 +1,1 @@
+{exp:wiki base_path="wiki/index" wiki="money_saving_wiki" theme="azure"}

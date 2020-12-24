@@ -1,0 +1,99 @@
+{preload_replace:my_channel="photos"}
+{preload_replace:my_template_group="photos"}
+{preload_replace:my_single_entry_template="comment"}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!--
+Design adapted from Pluralism by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>{exp:channel:entries channel="{my_channel}" disable="categories|category_fields|custom_fields|member_data|pagination" status="Open|Premium"}{title}{/exp:channel:entries} - Ed &amp; Eg Financial Advisors</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="{stylesheet=includes/site_css}" rel="stylesheet" type="text/css" media="screen" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="wrapper2">
+        <div id="header">
+          {website_sitename}
+          {website_menu}
+        </div>
+        <!-- end #header -->
+        <div id="page">
+          <div id="content">
+            {exp:channel:entries channel="{my_channel}" limit="1" require_entry="yes" status="Open|Premium"}
+              {if no_results}
+                {redirect="404"}
+              {/if} 
+              {if segment_4 != ''}
+                {redirect="404"}
+              {/if}
+              <h1>{title}</h1>
+              <br />
+              <p class="center"><img class="limited" src="{photos_photo}"/>
+              <br />
+              <em>{photos_caption}</em></p>
+              <p><a href={path={my_template_group}} title="Back to photos">Browse all photos</a></p>
+            {/exp:channel:entries}
+            <h3>Comments</h3>
+            {exp:comment:entries}
+              {if comments}
+                <p>{comment}</p>
+                <p class="meta">Posted by {name} on {comment_date format='%m/%d'} at {comment_date format='%h:%i %A'}</p><br />
+              {/if}
+              {if no_results}
+                <p>There are no comments at this time - be the first to share your thoughts!</p>
+              {/if}
+            {/exp:comment:entries}            
+            {exp:comment:preview}
+              <p>{comment}</p>
+              <p class="meta">Being previewed by {name} on {comment_date format='%m/%d'} at {comment_date format='%h:%i %A'}</p><br />
+            {/exp:comment:preview}
+            {exp:comment:form preview="{my_template_group}/{my_single_entry_template}"}
+              <h3>Post Your Own Comment</h3><br />
+              {if logged_out}
+                <p><label for="name">Name:</label>&nbsp;<input type="text" name="name" id="name" value="{name}" size="50" /></p>
+                <p><label for="email">Email:</label>&nbsp;<input type="text" name="email" id="email" value="{email}" size="50" /></p>
+              {/if}
+              <p>
+                <label for="comment">Comment:</label><br />
+                <textarea name="comment" id="comment" cols="80" rows="12">{comment}</textarea>
+              </p>
+              <p>
+                {if logged_out}
+                  <input type="checkbox" name="save_info" id="save_info" value="yes" {save_info} /><label for="save_info">Remember my personal information</label><br />
+                {/if}
+                <input type="checkbox" name="notify_me" id="notify_me" value="yes" {notify_me} /><label for="notify_me">Notify me of follow-up comments?</label>
+              </p>
+              {if captcha}
+                {captcha}
+                <p><label for="captcha">Submit the text you see in the image above:</label>&nbsp;<input type="text" name="captcha" id="captcha" value="" size="20" maxlength="20" style="width:140px;" /></p>
+              {/if}
+              <p>
+                <input type="submit" name="submit" value="Submit" />
+                <input type="submit" name="preview" value="Preview" />
+              </p>
+            {/exp:comment:form}
+          </div>
+          <!-- end #content -->
+          {website_sidebar}
+          <div style="clear: both;">&nbsp;</div>
+          {website_faqs}
+        </div>
+        <!-- end #page -->
+      </div>
+      <!-- end #wrapper2 -->
+      <div id="footer">
+        <p>(c) 2007 Eg &amp; Ed. Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree</a> + <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+      </div>
+    </div>
+    <!-- end #wrapper -->
+  </body>
+</html>

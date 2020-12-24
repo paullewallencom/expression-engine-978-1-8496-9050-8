@@ -1,0 +1,98 @@
+{preload_replace:my_channel="photos"}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!--
+Design adapted from Pluralism by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Photo Galleries - Ed &amp; Eg Financial Advisors</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="{stylesheet=includes/site_css}" rel="stylesheet" type="text/css" media="screen" />
+    {exp:jquery:script_tag}
+    <script type="text/javascript" src="{site_url}fancybox/jquery.fancybox-1.3.1.js"></script>
+    <script type="text/javascript" src="{site_url}fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+    <script type="text/javascript" src="{site_url}fancybox/jquery.easing-1.3.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="{site_url}fancybox/jquery.fancybox-1.3.1.css" media="screen" />
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("a.gallery").fancybox({
+          'cyclic': true,
+          'titlePosition': 'inside',	
+          'overlayShow': true,
+          'hideOnContentClick': true,
+          'overlayOpacity': 0.7,
+          'transitionIn': 'none',
+          'transitionOut': 'none'
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="wrapper2">
+        <div id="header">
+          {website_sitename}
+          {website_menu}
+        </div>
+        <!-- end #header -->
+        <div id="page">
+          <div id="content">
+            {if segment_2=="category"}
+              {exp:channel:category_heading channel="{my_channel}"}
+                <h1>{category_name}</h1>
+                <p>
+                  {category_description}
+                  <br />
+                  <a href={path=photos} title="Back to photos">Browse all photos</a>
+                </p>
+              {/exp:channel:category_heading}
+            {if:else}
+              <h1>Photo Galleries</h1>
+              <p><strong>Instructions</strong>: Select a gallery to view or click on a photo to see enlarged. When viewing in enlarged mode, use your left & right arrow keys to scroll between photos and the escape key to exit enlarged mode.</p>
+            {/if}
+            <form name="catmenu" action="">
+              <div>
+                <select name="selcat"
+onchange="location=document.catmenu.selcat.options[document.catmenu.selcat.selectedIndex].value;">
+                  <option value="">--Select Gallery--</option>
+                  {exp:channel:categories channel="{my_channel}" style="linear"}
+                    <option value="{path='photos'}">{category_name}</option>
+                  {/exp:channel:categories}
+                </select>
+              </div>
+            </form>
+            <table>
+              <tr>
+                {exp:channel:entries channel="{my_channel}"}
+                  <td style="text-align: center; height: 100px; width: 100px;">
+                    <a class="gallery" rel="group" href="{photos_photo}" title="{photos_caption}"><img src="{photos_photo}{path}_thumbs/thumb_{filename}.{extension}{/photos_photo}"  alt="{caption}" /></a>
+                    <br />
+                    <a href="{title_permalink=photos/comment}">{if comment_total=="1"}1 comment{if:else}{comment_total} comments{/if}</a>
+                  </td>
+                  {if count!=total_results}{switch="||||</tr><tr>"}{/if}
+                {/exp:channel:entries}
+              </tr>
+            </table>
+          </div>
+          <!-- end #content -->
+          {website_sidebar}
+          <div style="clear: both;">&nbsp;</div>
+          {website_faqs}
+        </div>
+        <!-- end #page -->
+      </div>
+      <!-- end #wrapper2 -->
+      <div id="footer">
+        <p>(c) 2007 Eg &amp; Ed. Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree</a> + <a href="http://www.freecsstemplates.org/">Free CSS Templates</a></p>
+      </div>
+    </div>
+    <!-- end #wrapper -->
+  </body>
+</html>

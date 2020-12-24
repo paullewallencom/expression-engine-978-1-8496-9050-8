@@ -1,0 +1,10 @@
+<div id="widebar">
+  {exp:channel:entries channel="faqs" limit="3" orderby="random" dynamic="off" status="Open|Premium"} 
+    <div id="{switch='colA|colB|colC'}">
+      <h3>Frequently Asked Question</h3>
+      <p>{faqs_question} <a href="{title_permalink=faqs/browse}">Find out&hellip;</a></p>
+    </div>
+  {/exp:channel:entries}
+  <div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end #widebar -->
